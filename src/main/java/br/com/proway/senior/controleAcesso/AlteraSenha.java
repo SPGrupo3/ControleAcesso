@@ -1,6 +1,5 @@
 package br.com.proway.senior.controleAcesso;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class AlteraSenha {

@@ -7,12 +7,12 @@ public class AlteraSenha {
 	
 	public static ArrayList<String> alterarSenha(String email) {
 		/**
-		 * Controla o processo de alteração de senha
+		 * Controla o processo de alteraÃ§Ã£o de senha
 		 * 
-		 * Verifica se o usuário existe, envia um email para o usuário,
+		 * Verifica se o usuÃ¡rio existe, envia um email para o usuÃ¡rio,
 		 * Solicita a nova senha e a salva.
 		 * 
-		 * @param email E-mail do usuário.
+		 * @param email E-mail do usuÃ¡rio.
 		 * @return Lista de erros se houver
 		 */
 		ArrayList<String> erro = new ArrayList<String>();
@@ -21,23 +21,24 @@ public class AlteraSenha {
 				solicitarNovaSenha(email);
 			}
 			else {
-				erro.add("Código inválido");
+				erro.add("CÃ³digo invÃ¡lido");
 			}
 		}
 		else {
-			erro.add("Usuário inexistente");
+			erro.add("UsuÃ¡rio inexistente");
 		}
+		System.out.println(erro);
 		return erro;
 	}
 
  	public static boolean gerenciarCodigo(String email) {
  		/**
- 		 * Gerencia a verificação com o código
+ 		 * Gerencia a verificaÃ§Ã£o com o cÃ³digo
  		 * 
- 		 * Gera, envia e confere o código de verificação de usuário
+ 		 * Gera, envia e confere o cÃ³digo de verificaÃ§Ã£o de usuÃ¡rio
  		 * 
- 		 * @param email Email do usuário
- 		 * @return true se o código informado pelo usuario for igual ao gerado
+ 		 * @param email Email do usuÃ¡rio
+ 		 * @return true se o cÃ³digo informado pelo usuario for igual ao gerado
  		 */
 		int codigoGerado = gerarCodigo();
 		enviarEmail(email, codigoGerado);
@@ -50,60 +51,70 @@ public class AlteraSenha {
  		/**
  		 * Envia um e-mail
  		 * 
- 		 * Envia o e-mail para o usuário com o código aleatório gerado
- 		 * para a confirmação.
+ 		 * Envia o e-mail para o usuÃ¡rio com o cÃ³digo aleatÃ³rio gerado
+ 		 * para a confirmaÃ§Ã£o.
  		 * 
- 		 * @param email Email do usuário
- 		 * @param codigoGerado Código aleatório gerado pelo sistema
+ 		 * @param email Email do usuÃ¡rio
+ 		 * @param codigoGerado CÃ³digo aleatÃ³rio gerado pelo sistema
  		 */
  		System.out.println("E-mail enviado");
  	}
  	
  	public static int solicitarCodigo() {
  		/**
- 		 * Solicita o código para o usuário
+ 		 * Solicita o cÃ³digo para o usuÃ¡rio
  		 * 
- 		 * Carrega o front-end com o campo para o usuário digitar o código
+ 		 * Carrega o front-end com o campo para o usuÃ¡rio digitar o cÃ³digo
  		 * 
- 		 * @return Código digitado pelo usuário
+ 		 * @return CÃ³digo digitado pelo usuÃ¡rio
  		 */
- 		System.out.print("Código verificador de 5 digitos: ");
+ 		System.out.print("CÃ³digo verificador de 5 digitos: ");
 		int codigo = 12345;
 		return codigo;
  	}
 
 	public static boolean verificarUsuario(String email) {
 		/**
-		 * Verifica se o usuário existe no sistema
+		 * Verifica se o usuÃ¡rio existe no sistema
 		 * 
 		 * @return boolean
 		 */
-		return true;
+		String emailExistente = "teste@gmail.com";
+		boolean verificacao;
+		if(emailExistente == email) {
+			verificacao = true;
+		}
+		else {
+			verificacao = false;
+		}
+		return verificacao;
 	};
 
 	public static int gerarCodigo() {
 		/**
-		 * Gera um código aleatório
+		 * Gera um cÃ³digo aleatÃ³rio
 		 * 
-		 * Gera o cógigo random para a verificação de usuário
+		 * Gera o cÃ³gigo random para a verificaÃ§Ã£o de usuÃ¡rio
 		 * 
 		 * @return codigo de 5 digitos
 		 */
 		Random random = new Random();
 		int codigo;
-		codigo = random.nextInt(99999) + 10000;
-		System.out.println(codigo);
+		codigo = random.nextInt(99999);
+		if(codigo <= 10000) {
+			codigo += 10000;
+		}
 		return codigo;
 	}
 
 	public static boolean validarCodigo(int codigoUsuario, int codigoGerado) {
 		/**
-		 * Verifica o código de recuperação de senha
+		 * Verifica o cÃ³digo de recuperaÃ§Ã£o de senha
 		 * 
-		 * Compara o código gerado pelo sistema com o código passado pelo usuário
+		 * Compara o cÃ³digo gerado pelo sistema com o cÃ³digo passado pelo usuÃ¡rio
 		 * 
-		 * @param codigoUsuario int Código informado pelo usuário
-		 * @param codigoGerado int Código gerado pelo sistema
+		 * @param codigoUsuario int CÃ³digo informado pelo usuÃ¡rio
+		 * @param codigoGerado int CÃ³digo gerado pelo sistema
 		 * @return Boolean
 		 */
 		
@@ -112,9 +123,9 @@ public class AlteraSenha {
 	
 	public static void solicitarNovaSenha(String email) {
 		/**
-		 * SOlicita a nova senha para o usuário
+		 * SOlicita a nova senha para o usuÃ¡rio
 		 * 
-		 * @param email Email do usuário
+		 * @param email Email do usuÃ¡rio
 		 */
 		String senhaNova = "novaSenha";
 		salvarSenha(senhaNova);
@@ -124,7 +135,7 @@ public class AlteraSenha {
 		/**
 		 * Salva a senha no banco
 		 * 
-		 * Criptografa e salva a nova senha no perfil do usuário
+		 * Criptografa e salva a nova senha no perfil do usuÃ¡rio
 		 * 
 		 * @param senha Nova senha do perfil
 		 */
